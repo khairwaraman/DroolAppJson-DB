@@ -1,0 +1,29 @@
+[
+  {
+    "name": "HDFC Card Tiered Discounts",
+    "condition": "$order: Order(cardType == \"HDFC\")",
+    "action": "double discountPercentage; if ($order.getAmount() > 25000) { discountPercentage = 0.20; } else if ($order.getAmount() > 20000) { discountPercentage = 0.15; } else if ($order.getAmount() > 15000) { discountPercentage = 0.10; } else if ($order.getAmount() > 10000) { discountPercentage = 0.05; } else { discountPercentage = 0.02; } double discountAmount = $order.getAmount() * discountPercentage; $order.setDiscount(discountPercentage * 100); $order.setFinalAmount($order.getAmount() - discountAmount);"
+
+
+  },
+  {
+    "name": "ICICI Card Tiered Discounts",
+    "condition": "$order: Order(cardType == \"ICICI\")",
+    "action": "double discountPercentage; if ($order.getAmount() > 20000) { discountPercentage = 0.20; } else if ($order.getAmount() >= 16000 && $order.getAmount() <= 20000) { discountPercentage = 0.10; } else if ($order.getAmount() >= 15000) { discountPercentage = 0.05; } else { discountPercentage = 0.03; } double discountAmount = $order.getAmount() * discountPercentage; $order.setDiscount(discountPercentage * 100); $order.setFinalAmount($order.getAmount() - discountAmount);"
+  },
+  {
+    "name": "Axis Bank Card Tiered Discounts",
+    "condition": "$order: Order(cardType == \"AXIS\")",
+    "action": "double discountPercentage; if ($order.getAmount() > 30000) { discountPercentage = 0.25; } else if ($order.getAmount() > 20000) { discountPercentage = 0.15; } else if ($order.getAmount() > 10000) { discountPercentage = 0.08; } else { discountPercentage = 0.03; } double discountAmount = $order.getAmount() * discountPercentage; $order.setDiscount(discountPercentage * 100); $order.setFinalAmount($order.getAmount() - discountAmount);"
+  },
+  {
+    "name": "SBI Card Tiered Discounts",
+    "condition": "$order: Order(cardType == \"SBI\")",
+    "action": "double discountPercentage; if ($order.getAmount() > 25000) { discountPercentage = 0.18; } else if ($order.getAmount() > 15000) { discountPercentage = 0.12; } else if ($order.getAmount() > 10000) { discountPercentage = 0.07; } else { discountPercentage = 0.04; } double discountAmount = $order.getAmount() * discountPercentage; $order.setDiscount(discountPercentage * 100); $order.setFinalAmount($order.getAmount() - discountAmount);"
+  },
+  {
+    "name": "Default Card Discount",
+    "condition": "$order: Order(cardType != \"HDFC\" && cardType != \"ICICI\" && cardType != \"AXIS\" && cardType != \"SBI\")",
+    "action": "double discountPercentage = 0.02; double discountAmount = $order.getAmount() * discountPercentage; $order.setDiscount(discountPercentage * 100); $order.setFinalAmount($order.getAmount() - discountAmount);"
+  }
+]
